@@ -6,11 +6,10 @@ const {
 } = require("../utils/errors");
 
 // GET /articles - Return articles saved by the user
-const getArticles = (req, res, next) => {
+const getArticles = (req, res, next) =>
   Article.find({ owner: req.user._id })
     .then((articles) => res.send(articles))
     .catch(next);
-};
 
 // POST /articles - Save a new article
 const createArticle = (req, res, next) => {
@@ -21,7 +20,7 @@ const createArticle = (req, res, next) => {
     return next(new BadRequestError("All fields are required"));
   }
 
-  Article.create({ keyword, title, description, publishedAt, source, urlToImage, owner })
+  return Article.create({ keyword, title, description, publishedAt, source, urlToImage, owner })
     .then((article) => res.status(201).send(article))
     .catch(next);
 };
@@ -30,7 +29,7 @@ const createArticle = (req, res, next) => {
 const deleteArticle = (req, res, next) => {
   const { articleId } = req.params;
 
-  Article.findById(articleId)
+  return Article.findById(articleId)
     .orFail(() => new NotFoundError("Article not found"))
     .then((article) => {
       if (!article.owner.equals(req.user._id)) {

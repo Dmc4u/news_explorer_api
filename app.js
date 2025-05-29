@@ -12,8 +12,6 @@ const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const {
   logValidationErrors,
-  validateSignup,
-  validateSignin,
 } = require("./middlewares/validation");
 
 const app = express();
@@ -45,8 +43,12 @@ app.use(rateLimiter);
 app.use(requestLogger);
 
 // Public routes
-app.post("/signup", validateSignup, createUser);
-app.post("/signin", validateSignin, login);
+app.post("/signup", createUser);
+app.post("/signin", login);
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'Server is reachable!' });
+});
 
 // Protected routes
 app.use(auth);
@@ -60,6 +62,7 @@ app.use(errorLogger);
 app.use(errorHandler);
 
 
-app.listen(PORT, () => {
+
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`App listening at port ${PORT}`);
 });

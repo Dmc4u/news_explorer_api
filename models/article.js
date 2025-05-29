@@ -19,8 +19,8 @@ const articleSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Publication date is required"],
       validate: {
-        validator: function (v) {
-          return !isNaN(Date.parse(v)); // Validates that it's a valid date
+        validator (v) {
+          return !Number.isNaN(Date.parse(v)); // Validates that it's a valid date
         },
         message: "Invalid date format",
       },
