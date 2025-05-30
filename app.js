@@ -46,10 +46,6 @@ app.use(requestLogger);
 app.post("/signup", createUser);
 app.post("/signin", login);
 
-app.get('/test', (req, res) => {
-  res.json({ message: 'Server is reachable!' });
-});
-
 // Protected routes
 app.use(auth);
 app.use("/", mainRouter);

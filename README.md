@@ -1,36 +1,56 @@
 ### 📘 `README.md` Template – Backend (`news-explorer-api`)
 
-```markdown
-# NewsExplorer – Backend
+# 📰 NewsExplorer – Backend
 
-This is the backend for the NewsExplorer app, built with Node.js, Express, and MongoDB. It handles user authentication and article storage.
+This is the backend for the **NewsExplorer** app, built with **Node.js**, **Express**, and **MongoDB**. It handles user registration, login, authentication via JWT, and allows users to save and delete articles.
+
+🌐 **Live API URL**: [https://api.finalproject.crabdance.com/](https://api.finalproject.crabdance.com/)
+
+---
 
 ## 🧩 Tech Stack
 
-- Node.js
-- express: for creating the web server
-- mongoose: for MongoDB database connection
-- bcryptjs: for password hashing
-- jsonwebtoken: for JWT authentication
-- express-rate-limit: for basic security (limiting requests)
-- helmet: for setting security headers
-- celebrate/Joi: for request validation
-- dotenv: for environment variables
-- cors: for handling Cross-Origin Resource Sharing
+- **Node.js** – JavaScript runtime
+- **Express** – Web server framework
+- **MongoDB** + **Mongoose** – Database & ODM
+- **bcryptjs** – Password hashing
+- **jsonwebtoken** – Token-based authentication
+- **express-rate-limit** – Basic rate limiting
+- **helmet** – Security headers
+- **celebrate/Joi** – Request validation
+- **dotenv** – Environment variables
+- **cors** – Cross-Origin Resource Sharing
+- **winston / express-winston** – Logging
+
+---
 
 ## 🛠 API Endpoints
 
-- `POST /signup` – Register new users
-- `POST /signin` – Login users
-- `GET /articles` – Get saved articles (auth required)
-- `POST /articles` – Save an article
-- `DELETE /articles/:id` – Remove an article
+| Method | Endpoint               | Description                    | Auth Required |
+|--------|------------------------|--------------------------------|----------------|
+| POST   | `/signup`              | Register a new user            | ❌             |
+| POST   | `/signin`              | Login a user                   | ❌             |
+| GET    | `/articles`            | Get saved articles             | ✅             |
+| POST   | `/articles`            | Save a new article             | ✅             |
+| DELETE | `/articles/:articleId` | Delete a saved article         | ✅             |
+| GET    | `/users/me`            | Get current user profile       | ✅             |
+| PATCH  | `/users/me`            | Update user name               | ✅             |
 
-## ⚙️ Setup
+---
+
+## ⚙️ Local Setup Instructions
 
 ```bash
+# 1. Clone the repo
+git clone git@github.com:Dmc4u/news_explorer_api.git
+cd news_explorer_api
+
+# 2. Install dependencies
 npm install
+
+# 3. Start in dev mode
 npm run dev
+
 
 git clone git@github.com:Dmc4u/news_explorer_api.git
 cd news-explorer-api
@@ -46,7 +66,7 @@ git checkout -b stage-2-backend
 📤 4. Push to GitHub
 git push -u origin stage-2-backend
 
-      ## ⚙️ Installing the core dependencies
+      ## 📦 Install Production Dependencies
     npm install express mongoose bcryptjs jsonwebtoken express-rate-limit helmet celebrate dotenv cors validator winston express-winston  
 
     ## This includes:
@@ -60,24 +80,24 @@ git push -u origin stage-2-backend
 - dotenv: for environment variables
 - cors: for handling Cross-Origin Resource Sharing
  
- npm install nodemon --save-dev 
+ ## 🧪 Dev Dependencies
  copy devDependencies from the previous project and run:  npm install.
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-import": "^2.31.0",
-    "nodemon": "^3.1.10",
-    "prettier": "^2.8.8"
-  }
+  "eslint": "^8.57.1",
+  "eslint-config-airbnb-base": "^15.0.0",
+  "eslint-config-prettier": "^8.10.0",
+  "eslint-plugin-import": "^2.31.0",
+  "nodemon": "^3.1.10",
+  "prettier": "^2.8.8"
+}
 
-    ## eslint status     
-     run: npx eslint .
-    ## Auto fix
-     run:  npx eslint . --fix
+## 🧼 Linting and Formatting
 
-     ## SSL certificate
-     run: sudo certbot --nginx -d finalproject.crabdance.com -d www.finalproject.crabdance.com  -d api.finalproject.crabdance.com 
+# Check for linting issues
+npx eslint .
+
+# Auto-fix issues
+npx eslint . --fix
 
 
  - Create an app.js file in your root directory
@@ -114,83 +134,59 @@ npm run dev
 
 
 ##  Based on the project requirements, we'll need to:
-
+# 🗂 Project Structure
 1. Set up the project structure (create directories for):
- news_explorer_api/
-├── models/         (for MongoDB schemas)
-├── controllers/    (for route handlers)
-├── routes/         (for API routes)
-├── middlewares/    (for custom middleware)
-├── utils/          (for helper functions)
-└── .env            (for environment variables)
+news_explorer_api/
+├── models/         # Mongoose schemas
+├── controllers/    # Route handler logic
+├── routes/         # API routes
+├── middlewares/    # Auth, error handlers, etc.
+├── utils/          # Custom classes/utilities
+└── .env            # Environment variables
 
  2. Set up MongoDB connection
  3. Implement user authentication
  4. Create API endpoints for articles
 
- ## How to generate a strong JWT_SECRET
-  - Generate one directly in your terminal:
-  Run:  node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
- 
- ## Next steps to consider:
-On your production server: You'll create that .env file with:
+ ## 🔐 Environment Setup
 
-NODE_ENV=production
-JWT_SECRET=your_64_character_secret_here
+ - Run this on VM: nano .env
+ - Generate a secure secret: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+ - Paste your JTW_secret: 
+    - NODE_ENV=production
+    - JWT_SECRET=your_64_character_secret_here
 
-For development: Your code will work without the .env file using the fallback values in config.js
+  # 🔧 Nginx Deployment Guide
+     - Run Certbot SSL setup: sudo certbot --nginx -d finalproject.crabdance.com -d www.finalproject.crabdance.com -d api.finalproject.crabdance.com
 
-## SSH into your server and run:
-nano .env in VM 
+   ### Nginx Management Commands:
 
-paste: NODE_ENV=production
-JWT_SECRET=your_64_character_secret_here    //change your_64_character_secret_here TO the generated the JWT_SECRET.
+   # Check Nginx config
+      sudo nginx -t
 
- 
-## Nginx server blocks
+   # View full configuration
+      sudo nginx -T
 
-Here are some useful commands to check your Nginx server:
+   # View current site config
+      sudo cat /etc/nginx/sites-available/default
+  or:  sudo nano /etc/nginx/sites-available/final-project
 
-To check Nginx configuration syntax:
-bash
-sudo nginx -t
+   # Reload Nginx
+      sudo systemctl reload nginx
 
-This will tell you if there are any syntax errors in your configuration files.
+   # Check available certificate
+     sudo certbot certificates   
 
-To see the current Nginx configuration:
-bash
-sudo nginx -T
+   # View logs
+     sudo tail -f /var/log/nginx/error.log
+     sudo tail -f /var/log/nginx/access.log
+  
+ # 🧠 Pro Tips
+   - Never commit your .env file — add it to .gitignore
 
-This shows the entire configuration that Nginx is currently using.
+   - Always restart PM2 after editing environment variables:pm2 restart final-project
 
-sudo cat /etc/nginx/sites-available/default
+ ## 🔗 My Profiles
 
-To check Nginx status:
-bash
-sudo systemctl status nginx
-
-To view Nginx error logs:
-bash
-sudo tail -f /var/log/nginx/error.log
-
-To view Nginx access logs:
-bash
-sudo tail -f /var/log/nginx/access.log
-
-To list your site configurations:
-bash
-ls -la /etc/nginx/sites-available/
-ls -la /etc/nginx/sites-enabled/
-
-To edit
-sudo nano /etc/nginx/sites-available/final-project
-ctrl + x
-y press enter.
-
-sudo nginx -t
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is successful
-
-To reload 
-sudo systemctl reload nginx
-
+- 📁 GitHub: [https://github.com/Dmc4u/](https://github.com/Dmc4u/)
+- 💼 LinkedIn: [https://www.linkedin.com/in/moses-ademola-aina-a42652151/](https://www.linkedin.com/in/moses-ademola-aina-a42652151/)
