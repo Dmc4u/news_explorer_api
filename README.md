@@ -1,6 +1,3 @@
-
----
-
 ### 📘 `README.md` Template – Backend (`news-explorer-api`)
 
 ```markdown
@@ -11,10 +8,15 @@ This is the backend for the NewsExplorer app, built with Node.js, Express, and M
 ## 🧩 Tech Stack
 
 - Node.js
-- Express.js
-- MongoDB + Mongoose
-- JSON Web Tokens (JWT)
-- Celebrate/Joi (validation)
+- express: for creating the web server
+- mongoose: for MongoDB database connection
+- bcryptjs: for password hashing
+- jsonwebtoken: for JWT authentication
+- express-rate-limit: for basic security (limiting requests)
+- helmet: for setting security headers
+- celebrate/Joi: for request validation
+- dotenv: for environment variables
+- cors: for handling Cross-Origin Resource Sharing
 
 ## 🛠 API Endpoints
 
@@ -58,7 +60,7 @@ git push -u origin stage-2-backend
 - dotenv: for environment variables
 - cors: for handling Cross-Origin Resource Sharing
  
- npm install nodemon --save-dev  Or
+ npm install nodemon --save-dev 
  copy devDependencies from the previous project and run:  npm install.
   "devDependencies": {
     "eslint": "^8.57.1",
