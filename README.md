@@ -63,6 +63,13 @@ git commit -m "Initial commit: backend setup started"
 🌿 3. Create and Switch to Stage Branches
 git checkout -b stage-2-backend
 
+
+# Final Push
+
+- git add .
+- git commit -m "Something"
+- git push origin stage-2-backend 
+
 📤 4. Push to GitHub
 git push -u origin stage-2-backend
 
@@ -92,7 +99,6 @@ git push -u origin stage-2-backend
 }
 
 ## 🧼 Linting and Formatting
-
 # Check for linting issues
 npx eslint .
 
@@ -156,13 +162,10 @@ news_explorer_api/
     - NODE_ENV=production
     - JWT_SECRET=your_64_character_secret_here
 
-  # 🔧 Nginx Deployment Guide
+  # 🔧 Nginx Deployment Guide for SSL certificate
      - Run Certbot SSL setup: sudo certbot --nginx -d finalproject.crabdance.com -d www.finalproject.crabdance.com -d api.finalproject.crabdance.com
 
    ### Nginx Management Commands:
-
-   # Check Nginx config
-      sudo nginx -t
 
    # View full configuration
       sudo nginx -T
@@ -170,6 +173,11 @@ news_explorer_api/
    # View current site config
       sudo cat /etc/nginx/sites-available/default
   or:  sudo nano /etc/nginx/sites-available/final-project
+
+    - save: ctrl x, y
+
+      # Check Nginx config
+      sudo nginx -t
 
    # Reload Nginx
       sudo systemctl reload nginx
@@ -186,7 +194,8 @@ news_explorer_api/
 
    - Always restart PM2 after editing environment variables:pm2 restart final-project
 
- ## 🔗 My Profiles
+ ## 📬 Contact
+  - Created by Moses Ademola Aina
 
 - 📁 GitHub: [https://github.com/Dmc4u/](https://github.com/Dmc4u/)
 - 💼 LinkedIn: [https://www.linkedin.com/in/moses-ademola-aina-a42652151/](https://www.linkedin.com/in/moses-ademola-aina-a42652151/)
