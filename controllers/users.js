@@ -12,7 +12,7 @@ const {
 // GET /users/me - Get current user
 const getCurrentUser = (req, res, next) =>
   User.findById(req.user._id)
-    .orFail(() => Promise.reject(new NotFoundError("User not found")))
+    .orFail(() => new NotFoundError("User not found"))
     .then((user) => {
       const userObj = user.toObject();
       delete userObj.password;
@@ -83,7 +83,7 @@ const updateUser = (req, res, next) => {
   }
 
   return User.findByIdAndUpdate(req.user._id, { name }, { new: true, runValidators: true })
-    .orFail(() => Promise.reject(new NotFoundError("User not found")))
+    .orFail(() => new NotFoundError("User not found"))
     .then((user) => {
       const userObj = user.toObject();
       delete userObj.password;
