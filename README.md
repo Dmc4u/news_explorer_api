@@ -4,7 +4,7 @@
 
 This is the backend for the **NewsExplorer** app, built with **Node.js**, **Express**, and **MongoDB**. It handles user registration, login, authentication via JWT, and allows users to save and delete articles.
 
-🌐 **Live API URL**: [https://api.finalproject.crabdance.com/](https://api.finalproject.crabdance.com/)
+🌐 **Live API URL**: [https://api.newsarticle.crabdance.com/](https://api.newsarticle.crabdance.com/)
 
 ---
 
@@ -163,7 +163,7 @@ news_explorer_api/
     - JWT_SECRET=your_64_character_secret_here
 
   # 🔧 Nginx Deployment Guide for SSL certificate
-     - Run Certbot SSL setup: sudo certbot --nginx -d finalproject.crabdance.com -d www.finalproject.crabdance.com -d api.finalproject.crabdance.com
+     - Run Certbot SSL setup: sudo certbot --nginx -d newsarticle.crabdance.com -d www.newsarticle.crabdance.com -d api.newsarticle.crabdance.com
 
    ### Nginx Management Commands:
 

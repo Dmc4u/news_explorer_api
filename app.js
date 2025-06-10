@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://finalproject.crabdance.com'
+    'https://newsarticle.crabdance.com'
   ],
   methods: ['GET', 'POST', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
